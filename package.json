@@ -1,0 +1,22 @@
+{
+  "name": "calibre-build-json",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "source": "./src/index.js",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "better-sqlite3": "^9.1.1",
+    "conf": "^12.0.0",
+    "out-of-character": "^1.2.2",
+    "sharp": "^0.32.6"
+  }
+}
