@@ -1,5 +1,6 @@
 import { Calibre } from "./calibre.js";
 import Conf from 'conf';
+import { Covers } from "./covers.js";
 import { Metadata } from "./metadata.js";
 
 const config = new Conf({
@@ -8,6 +9,10 @@ const config = new Conf({
   schema: {
     datafile: {
       default: "./data/metadata.json",
+      type: "string"
+    },
+    coversDir: {
+      default: "./data/covers",
       type: "string"
     },
     calibreDir: {
@@ -41,7 +46,7 @@ const updateMetadata = async () => {
 
   metadata.write()
 
-  // TODO: Add missing covers
+  Covers.getCovers(newBooks)
 }
 
 /**
