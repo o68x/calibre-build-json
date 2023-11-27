@@ -8,11 +8,11 @@ const config = new Conf({
   cwd: ".",
   schema: {
     datafile: {
-      default: "./data/metadata.json",
+      default: "./metadata.json",
       type: "string"
     },
     coversDir: {
-      default: "./data/covers",
+      default: "./covers",
       type: "string"
     },
     calibreDir: {
@@ -46,7 +46,9 @@ const updateMetadata = async () => {
 
   metadata.write()
 
-  Covers.getCovers(newBooks)
+  const covers = new Covers("covers/", "D:/Olivier/Library");
+
+  covers.getCovers(newBooks)
 }
 
 /**

@@ -36,32 +36,32 @@ export class Covers {
   };
 }
 
-const getFiles = function (dirPath, root, arrayOfFiles) {
-  if (arguments.length === 1) root = dirPath;
+// const getFiles = function (dirPath, root, arrayOfFiles) {
+//   if (arguments.length === 1) root = dirPath;
 
-  let files = readdirSync(dirPath);
-  const regex = /\((\d*)\)/;
-  let dirId = dirPath.match(regex) || 0;
+//   let files = readdirSync(dirPath);
+//   const regex = /\((\d*)\)/;
+//   let dirId = dirPath.match(regex) || 0;
 
-  arrayOfFiles = arrayOfFiles || [];
+//   arrayOfFiles = arrayOfFiles || [];
 
-  files.forEach(function (file) {
-    if (statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getFiles(dirPath + "/" + file, root, arrayOfFiles);
-    } else {
-      if (file === "cover.jpg") {
-        // I have to do this because of the way paths are stored in calibre
-        let img = path.relative(root, dirPath);
-        arrayOfFiles.push({ id: parseInt(dirId[1]), path: img });
-      }
-    }
-  });
+//   files.forEach(function (file) {
+//     if (statSync(dirPath + "/" + file).isDirectory()) {
+//       arrayOfFiles = getFiles(dirPath + "/" + file, root, arrayOfFiles);
+//     } else {
+//       if (file === "cover.jpg") {
+//         // I have to do this because of the way paths are stored in calibre
+//         let img = path.relative(root, dirPath);
+//         arrayOfFiles.push({ id: parseInt(dirId[1]), path: img });
+//       }
+//     }
+//   });
 
-  return arrayOfFiles;
-};
+//   return arrayOfFiles;
+// };
 
-const files = getFiles("D:/Olivier/Library");
+// const files = getFiles("D:/Olivier/Library");
 
-const covers = new Covers("data/covers/", "D:/Olivier/Library");
+// const covers = new Covers("covers/", "D:/Olivier/Library");
 
-covers.getCovers(files);
+// covers.getCovers(files);
