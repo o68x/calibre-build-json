@@ -47,7 +47,7 @@ const updateMetadata = async () => {
 
   metadata.write()
 
-  const covers = new Covers("covers/", "D:/Olivier/Library");
+  const covers = new Covers(config.get("coversDir"), config.get("calibreDir"));
 
   covers.getCovers(newBooks)
 }

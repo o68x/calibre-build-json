@@ -11735,7 +11735,7 @@ var updateMetadata = async () => {
   metadata.data.books.push(...newBooks);
   console.log(metadata.data.books[metadata.data.books.length - 1]);
   metadata.write();
-  const covers = new Covers("covers/", "D:/Olivier/Library");
+  const covers = new Covers(config.get("coversDir"), config.get("calibreDir"));
   covers.getCovers(newBooks);
 };
 async function dbHasNewBooks() {
