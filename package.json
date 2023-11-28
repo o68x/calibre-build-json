@@ -7,16 +7,19 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build"
+    "build": "esbuild src/index.js --bundle --platform=node --external:sharp --external:better-sqlite3 --outfile=calibre-build.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/better-sqlite3": "^7.6.8",
     "better-sqlite3": "^9.1.1",
     "conf": "^12.0.0",
     "out-of-character": "^1.2.2",
     "sharp": "^0.32.6"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "esbuild": "0.19.8"
   }
 }

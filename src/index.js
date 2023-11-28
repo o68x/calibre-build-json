@@ -4,6 +4,7 @@ import { Covers } from "./covers.js";
 import { Metadata } from "./metadata.js";
 
 const config = new Conf({
+  configName: "calibre-build",
   projectName: "calibre-build-json",
   cwd: ".",
   schema: {
