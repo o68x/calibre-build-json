@@ -16,7 +16,8 @@
     "better-sqlite3": "^9.1.1",
     "conf": "^12.0.0",
     "out-of-character": "^1.2.2",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "simple-git": "^3.21.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.8",

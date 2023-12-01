@@ -1,7 +1,15 @@
+#!/usr/bin/env node
+
+import { CleanOptions, simpleGit } from "simple-git";
+
 import { Calibre } from "./calibre.js";
 import Conf from 'conf';
 import { Covers } from "./covers.js";
 import { Metadata } from "./metadata.js";
+
+simpleGit().clean(CleanOptions.DRY_RUN);
+
+const git = simpleGit();
 
 const config = new Conf({
   configName: "calibre-build",
@@ -23,12 +31,19 @@ const config = new Conf({
   }
 });
 
-const metadata = new Metadata(config.get("datafile"));
-const db = new Calibre(config.get("calibreDir"));
+const dataFile = config.get("datafile");
+const calibreDir = config.get("calibreDir");
+const coversDir = config.get("coversDir")
+
+const metadata = new Metadata(dataFile);
+const db = new Calibre(calibreDir);
 db.init();
 
 const updateMetadata = async () => {
-  // Quit if no new books
+
+  let lastUpdate = new Date(metadata.data.lastUpdate);
+
+  console.log(`Last update: ${lastUpdate.toLocaleString()}`);
   if (!await dbHasNewBooks()) {
     console.log("No new books to add...");
     return;
@@ -40,14 +55,16 @@ const updateMetadata = async () => {
   // Get new book objects
   const newBooks = await db.getBooks(booksToAdd.map(book => book.id))
 
+  console.log(newBooks.length, "new books");
   // Push books to metadata
 
   metadata.data.books.push(...newBooks);
-  console.log(metadata.data.books[metadata.data.books.length - 1])
+  metadata.data.lastUpdate = new Date();
+  // console.log(metadata.data.books[metadata.data.books.length - 1])
 
   metadata.write()
 
-  const covers = new Covers(config.get("coversDir"), config.get("calibreDir"));
+  const covers = new Covers(coversDir, calibreDir);
 
   covers.getCovers(newBooks)
 }
@@ -63,4 +80,19 @@ async function dbHasNewBooks() {
   return lastDbIndex > lastDataIndex ? true : false;
 }
 
-updateMetadata()
+async function commitAndPush() {
+  await git.add([dataFile, coversDir]);
+
+  await git.commit("update data");
+
+  await git.push()
+
+  // console.log(await git.status());
+}
+
+async function run() {
+  await updateMetadata();
+  await commitAndPush();
+}
+
+run();
