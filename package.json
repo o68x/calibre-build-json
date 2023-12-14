@@ -8,6 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "esbuild src/index.js --bundle --platform=node --external:sharp --external:better-sqlite3 --outfile=calibre-build.cjs",
+    "copy": "node ./copyto.js",
+    "deploy": "npm run build && npm run copy",
     "preinstall": "npx only-allow pnpm"
   },
   "keywords": [],
