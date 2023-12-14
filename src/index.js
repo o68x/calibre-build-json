@@ -56,6 +56,9 @@ const updateMetadata = async () => {
   const newBooks = await db.getBooks(booksToAdd.map(book => book.id))
 
   console.log(newBooks.length, "new books");
+  newBooks.forEach( book => {
+    console.log(book.title);
+  })
   // Push books to metadata
 
   metadata.data.books.push(...newBooks);
