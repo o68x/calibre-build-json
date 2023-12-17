@@ -69,7 +69,7 @@ const updateMetadata = async () => {
 
   const covers = new Covers(coversDir, calibreDir);
 
-  covers.getCovers(newBooks)
+  await covers.getCovers(newBooks)
 }
 
 /**
