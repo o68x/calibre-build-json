@@ -25,7 +25,7 @@ const config = new Conf({
       type: "string"
     },
     calibreDir: {
-      default: "D:/Olivier/Library",
+      default: "/home/olivier/Documens/Library",
       type: "string"
     }
   }

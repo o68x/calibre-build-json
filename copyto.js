@@ -1,3 +1,3 @@
 import fs from "fs"
 
-fs.copyFileSync("./calibre-build.cjs", "../calibrekit/calibre-build.cjs")
+fs.copyFileSync("./calibre-build.cjs", "../calibre-build.cjs")

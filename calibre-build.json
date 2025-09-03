@@ -1,5 +1,5 @@
 {
 	"datafile": "./metadata.json",
   "coversDir": "./covers/",
-	"calibreDir": "D:/Olivier/Library"
+	"calibreDir": "/home/olivier/Documents/Library"
 }
